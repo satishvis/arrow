@@ -1,5 +1,31 @@
 ## History
 
+### 0.14.2
+
+- [CHANGE] Travis CI builds now use tox to lint and run tests.
+- [FIX] Fixed UnicodeDecodeError on certain locales (#600).
+
+### 0.14.1
+
+- [FIX] Fixed "ImportError: No module named 'dateutil'" (#598).
+
+### 0.14.0
+
+- [NEW] Added provisional support for Python 3.8.
+- [CHANGE] Removed support for EOL Python 3.4.
+- [FIX] Updated setup.py with modern Python standards.
+- [FIX] Upgraded dependencies to latest versions.
+- [FIX] Enabled flake8 and black on travis builds.
+- [FIX] Formatted code using black and isort.
+
+### 0.13.2
+
+- [NEW] Add is_between method.
+- [FIX] Improved humanize behaviour for near zero durations (#416).
+- [FIX] Correct humanize behaviour with future days (#541).
+- [FIX] Documentation updates.
+- [FIX] Improvements to German Locale.
+
 ### 0.13.1
 
 - [NEW] Add support for Python 3.7.

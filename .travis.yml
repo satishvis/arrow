@@ -1,18 +1,23 @@
-sudo: false
 language: python
 dist: xenial
-python:
-  - 2.7
-  - 3.4
-  - 3.5
-  - 3.6
-  - 3.7
-install:
-    - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then make build27; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == '3.4' ]]; then make build34; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == '3.5' ]]; then make build35; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == '3.6' ]]; then make build36; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == '3.7' ]]; then make build37; fi
-    - pip install codecov
-script: make test
+matrix:
+    include:
+        - python: 2.7
+          env: TOXENV=py27
+        - python: 3.5
+          env: TOXENV=py35
+        - python: 3.6
+          env: TOXENV=py36
+        - python: 3.7
+          env: TOXENV=py37
+        - python: 3.8-dev
+          env: TOXENV=py38
+        - name: "Linting"
+          python: 3.7
+          env: TOXENV=lint
+          cache:
+              directories:
+                  - $HOME/.cache/pre-commit
+install: pip install -U codecov tox
+script: tox
 after_success: codecov
